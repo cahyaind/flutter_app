@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/home/home.dart';
 import 'package:flutter_app/screens/auth/login.dart';
+import 'package:flutter_app/widgets/widgets.dart';
 
 // memakai statefull karena disini kita akan
 // melakukan pengecekan user, tentu disini akan
@@ -21,7 +22,7 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Text("Loading...")),
+      body: wAppLoading(),
     );
   }
 
@@ -30,7 +31,7 @@ class _SplashState extends State<Splash> {
   //dipanggil di luar kelasnya
 
   void _checkUserSementara(bool user) async {
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(Duration(seconds: 4));
 
     // navigator, push dan push replacement
     // push -> ada tombol kembali
