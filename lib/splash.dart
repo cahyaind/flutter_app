@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/home/home.dart';
+import 'package:flutter_app/screens/auth/login.dart';
 
 // memakai statefull karena disini kita akan
 // melakukan pengecekan user, tentu disini akan
@@ -13,7 +14,7 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     // TODO: implement initState
-    _checkUserSementara();
+    _checkUserSementara(false);
     super.initState();
   }
 
@@ -28,11 +29,17 @@ class _SplashState extends State<Splash> {
   //private, intinya method ini tidak bisa
   //dipanggil di luar kelasnya
 
-  void _checkUserSementara() async {
+  void _checkUserSementara(bool user) async {
     await Future.delayed(Duration(seconds: 2));
 
     // navigator, push dan push replacement
+    // push -> ada tombol kembali
+    // pushReplacement -> tidak ada tombol kembali, karena ditimpa
 
-    Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
+    // Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
+
+    Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (context) => user ? Home() : Login()));
+    // memakai ternary
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/home/home.dart';
-import 'spalsh.dart';
+import 'splash.dart';
 
 void main() => runApp(MyApp());
 
