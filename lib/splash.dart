@@ -31,7 +31,7 @@ class _SplashState extends State<Splash> {
   //dipanggil di luar kelasnya
 
   void _checkUserSementara(bool user) async {
-    await Future.delayed(Duration(seconds: 4));
+    await Future.delayed(Duration(seconds: 3));
 
     // navigator, push dan push replacement
     // push -> ada tombol kembali
@@ -39,8 +39,10 @@ class _SplashState extends State<Splash> {
 
     // Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
 
-    Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (context) => user ? Home() : Login()));
-    // memakai ternary
+    // Navigator.pushReplacement(context,
+    //     MaterialPageRoute(builder: (context) => user ? Home() : Login()));
+    // 2 baris di atas ini memakai ternary
+
+    wPushReplaceTo(context, user ? Home() : Login());
   }
 }

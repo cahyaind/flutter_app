@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screens/auth/forgot_password.dart';
 import 'package:flutter_app/screens/home/home.dart';
+import 'package:flutter_app/widgets/widget_auth.dart';
 import 'package:flutter_app/widgets/widgets.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -60,9 +63,7 @@ class _LoginState extends State<Login> {
           child: Text("Forgot Password?"),
         ),
       ),
-      onTap: () {
-        print("hilap kata sandina nya?");
-      },
+      onTap: () => wPushTo(context, ForgotPassword()),
     );
   }
 
@@ -85,7 +86,10 @@ class _LoginState extends State<Login> {
       width: double.infinity,
       child: RaisedButton.icon(
         shape: StadiumBorder(),
-        icon: Icon(Icons.adb),
+        icon: Icon(
+          MdiIcons.google,
+          size: 20,
+        ),
         label: Text('Google'),
         onPressed: () {},
       ),
@@ -93,28 +97,34 @@ class _LoginState extends State<Login> {
   }
 
   Widget _textRegister() {
-    return Container(
-      margin: EdgeInsets.only(top: 40),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text("Don't have an accout yet?"),
-          GestureDetector(
-            child: Container(
-              padding: EdgeInsets.all(10),
-              // color: Colors.transparent,
-              child: Text(
-                "Register",
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-            ),
-            onTap: () {
-              print('REGISTER NIH');
-            },
-          ),
-        ],
-      ),
+    return wTextRegister(
+      "Don't have an accout yet?",
+      "Register",
+      () {},
     );
+
+    // return Container(
+    //   margin: EdgeInsets.only(top: 40),
+    //   child: Row(
+    //     mainAxisAlignment: MainAxisAlignment.center,
+    //     children: [
+    //       Text("Don't have an accout yet?"),
+    //       GestureDetector(
+    //         child: Container(
+    //           padding: EdgeInsets.all(10),
+    //           // color: Colors.transparent,
+    //           child: Text(
+    //             "Register",
+    //             style: TextStyle(fontWeight: FontWeight.bold),
+    //           ),
+    //         ),
+    //         onTap: () {
+    //           print('REGISTER NIH');
+    //         },
+    //       ),
+    //     ],
+    //   ),
+    // );
   }
 
   @override
@@ -150,16 +160,12 @@ class _LoginState extends State<Login> {
   }
 
   void _loginSementara() async {
-    setState(() {
-      _isLoading = true;
-    });
-
     if (_email.text == "email@gmail.com" && _password.text == "12345") {
-      await Future.delayed(Duration(seconds: 4));
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => Home()),
-      );
+      setState(() {
+        _isLoading = true;
+      });
+      await Future.delayed(Duration(seconds: 2));
+      wPushReplaceTo(context, Home());
     } else {
       print('lah ga bisa');
     }
